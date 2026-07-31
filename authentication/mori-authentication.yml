@@ -1,0 +1,48 @@
+generated: '2026-07-20'
+method: searched
+source: live probe of https://babymori.com/.well-known/openid-configuration and /.well-known/oauth-authorization-server (Shopify Customer Account API)
+note: >-
+  The only authenticated machine surface on babymori.com is Shopify's Customer
+  Account API for this store, which advertises OpenID Connect + OAuth 2.0
+  discovery. MORI does not operate a first-party auth server; the issuer is
+  Shopify (authentication/6726617). The storefront browsing/cart MCP at
+  /api/mcp requires no authentication.
+issuer: https://shopify.com/authentication/6726617
+schemes:
+- type: openIdConnect
+  openIdConnectUrl: https://babymori.com/.well-known/openid-configuration
+  id_token_signing_alg: RS256
+  jwks_uri: https://shopify.com/authentication/6726617/.well-known/jwks.json
+  jwks_status: 200
+  claims_supported:
+  - iss
+  - sub
+  - aud
+  - exp
+  - iat
+  - nonce
+  - sid
+  - email
+  - email_verified
+- type: oauth2
+  flows:
+    authorization_code:
+      authorization_endpoint: https://shopify.com/authentication/6726617/oauth/authorize
+      token_endpoint: https://shopify.com/authentication/6726617/oauth/token
+      end_session_endpoint: https://shopify.com/authentication/6726617/logout
+      pkce: true
+      code_challenge_methods:
+      - S256
+  grant_types:
+  - authorization_code
+  - refresh_token
+  - urn:ietf:params:oauth:grant-type:jwt-bearer
+  token_endpoint_auth_methods:
+  - client_secret_basic
+  scopes:
+  - openid
+  - email
+  - customer-account-api:full
+  - customer-account-mcp-api:full
+op_policy_uri: https://www.shopify.com/legal/privacy
+op_tos_uri: https://www.shopify.com/legal/terms

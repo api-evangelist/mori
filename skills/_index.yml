@@ -1,0 +1,13 @@
+generated: '2026-07-20'
+method: generated
+source: grounded in live https://babymori.com/api/mcp tool schemas
+skills:
+- file: mori-shop-catalog.md
+  name: mori-shop-catalog
+  description: Browse the MORI catalog and build a cart via the store's live Shopify Storefront MCP server (payment stays human-approved).
+  operations:
+  - search_catalog
+  - get_product_details
+  - update_cart
+  - get_cart
+  - search_shop_policies_and_faqs

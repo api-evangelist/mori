@@ -1,0 +1,58 @@
+generated: '2026-07-20'
+method: searched
+source: live probe of https://babymori.com/api/mcp (initialize + tools/list) and /.well-known/ucp
+name: MORI Storefront MCP
+status: live
+note: >-
+  babymori.com is a Shopify-hosted store. Shopify serves a first-party, hosted
+  Model Context Protocol (MCP) server for this store at /api/mcp with no
+  authentication required for browsing/cart tools. A second MCP endpoint,
+  /api/ucp/mcp, implements the Universal Commerce Protocol (UCP) shopping
+  service. MORI does not author these servers; they are provided natively by
+  the Shopify platform for this merchant.
+servers:
+- id: storefront-mcp
+  transport: streamable-http
+  endpoint: https://babymori.com/api/mcp
+  protocol_version: '2025-06-18'
+  server_info:
+    name: storefront-renderer
+    version: 0.1.0
+  capabilities:
+    tools: true
+    prompts: true
+    resources: true
+    logging: true
+  authentication: none
+  probe_status: 200
+  tools:
+  - name: search_catalog
+    description: Search store products via natural-language query and/or filter criteria (UCP dev.ucp.shopping.catalog.search); paginated.
+  - name: get_cart
+    description: Get a cart (items, shipping options, discount info, checkout url) by cart id.
+  - name: update_cart
+    description: Add/remove/update line items, buyer identity, delivery addresses, delivery options, discount and gift-card codes, and notes in one call.
+  - name: search_shop_policies_and_faqs
+    description: Answer questions about store policies, products, services, hours, and contact info.
+  - name: get_product_details
+    description: Look up a product by id and select a specific variant (size/color) for a product card.
+- id: ucp-shopping-mcp
+  transport: mcp
+  endpoint: https://babymori.com/api/ucp/mcp
+  spec: https://ucp.dev/2026-04-08/specification/overview/
+  schema: https://ucp.dev/2026-04-08/services/shopping/mcp.openrpc.json
+  service: dev.ucp.shopping
+  ucp_versions:
+  - '2026-04-08'
+  - '2026-01-23'
+  probe_status: 422
+  probe_note: tools/list requires a UCP context payload; endpoint present per /.well-known/ucp merchant profile.
+discovery:
+- path: /.well-known/ucp
+  status: 200
+  file: ../well-known/mori-ucp.json
+- path: /llms.txt
+  status: 200
+  file: ../llms/mori-llms.txt
+- path: /agents.md
+  status: 200

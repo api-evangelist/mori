@@ -1,0 +1,34 @@
+generated: '2026-07-20'
+method: searched
+source: live probe of https://babymori.com/.well-known/*
+host: https://babymori.com
+note: >-
+  babymori.com is hosted on Shopify. The OIDC/OAuth discovery documents below
+  are served by Shopify's Customer Account API for this store
+  (issuer https://shopify.com/authentication/6726617); MORI does not publish a
+  first-party API surface of its own. Scopes advertised include
+  customer-account-api:full and customer-account-mcp-api:full.
+documents:
+- path: /.well-known/openid-configuration
+  status: 200
+  file: mori-openid-configuration.json
+- path: /.well-known/oauth-authorization-server
+  status: 200
+  file: mori-oauth-authorization-server.json
+- path: /.well-known/ucp
+  status: 200
+  file: mori-ucp.json
+  note: Universal Commerce Protocol (UCP) merchant profile; advertises dev.ucp.shopping over /api/ucp/mcp (versions 2026-04-08, 2026-01-23).
+- path: /llms.txt
+  status: 200
+  file: ../llms/mori-llms.txt
+  note: Agent instructions for the store; mirrors /agents.md.
+- path: /agents.md
+  status: 200
+  note: Canonical agent-facing store description (200; mirrored by /llms.txt).
+- path: /.well-known/security.txt
+  status: 404
+- path: /.well-known/api-catalog
+  status: 404
+- path: /.well-known/ai-plugin.json
+  status: 404

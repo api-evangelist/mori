@@ -1,0 +1,18 @@
+generated: '2026-07-20'
+method: searched
+source: scopes_supported in live https://babymori.com/.well-known/openid-configuration (Shopify Customer Account API)
+issuer: https://shopify.com/authentication/6726617
+note: >-
+  OAuth 2.0 / OIDC scopes advertised by the Shopify Customer Account API
+  discovery document for this store. customer-account-mcp-api:full authorizes
+  the authenticated Customer Account MCP surface; the anonymous storefront MCP
+  at /api/mcp requires no scope.
+scopes:
+- name: openid
+  description: Standard OpenID Connect scope; returns an ID token identifying the signed-in customer.
+- name: email
+  description: Grants access to the customer's email and email_verified claims.
+- name: customer-account-api:full
+  description: Full access to the Shopify Customer Account API for the signed-in customer (orders, profile, addresses).
+- name: customer-account-mcp-api:full
+  description: Full access to the authenticated Customer Account MCP API surface for the signed-in customer.

@@ -1,7 +1,33 @@
 aid: mori
+accessModel:
+  pricing: unknown
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Self-serve signup
+  confidence: medium
+  source:
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/mori.png
 name: MORI
-description: MORI is a company surfaced as a portfolio company of 500-global and added to the API Evangelist
-  network as a stub for enrichment. This profile is a lead awaiting the enrichment pipeline.
+description: >-
+  MORI (Baby Mori) is a UK-based, online-first baby and children's brand
+  founded in 2015 by Akin Onal, known for soft essentials made from a
+  proprietary bamboo and organic cotton fabric blend. Its direct-to-consumer
+  range spans sleepwear, daywear, footwear, blankets and muslins, nursery and
+  home goods, and a Sleep Club subscription, shipping across the UK, US, and
+  Europe. MORI operates as a Shopify-hosted e-commerce business and does not
+  publish a first-party developer API. Its machine-readable surface is provided
+  natively by the Shopify platform: a live Storefront MCP server at /api/mcp
+  (search_catalog, get_cart, update_cart, get_product_details,
+  search_shop_policies_and_faqs), a Universal Commerce Protocol (UCP) merchant
+  profile at /.well-known/ucp, an agent-instructions /llms.txt (mirrored at
+  /agents.md), and the Shopify Customer Account API OIDC/OAuth discovery. This
+  profile was surfaced as a 500 Global portfolio company and enriched by the
+  API Evangelist pipeline.
 url: https://raw.githubusercontent.com/api-evangelist/mori/refs/heads/main/apis.yml
 x-type: company
 x-source: vc-portfolio
@@ -11,9 +37,19 @@ x-tier: stub
 x-tier-reason: portfolio-lead
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-17'
+modified: '2026-07-20'
 tags:
 - Company
+- Retail
+- E-commerce
+- Baby Products
+- Consumer Goods
+- Apparel
+- Direct to Consumer
+- Shopify
+- MCP
+- Agent Native
+- Universal Commerce Protocol
 apis: []
 maintainers:
 - FN: Kin Lane
@@ -23,3 +59,32 @@ maintainers:
 common:
 - type: Website
   url: https://babymori.com
+- type: Blog
+  url: https://babymori.com/blogs/journal
+- type: Support
+  url: https://babymori.com/pages/contact
+- type: TermsOfService
+  url: https://babymori.com/pages/terms-conditions
+- type: PrivacyPolicy
+  url: https://babymori.com/pages/privacy-policy
+- type: WellKnown
+  url: well-known/mori-well-known.yml
+- type: DomainSecurity
+  url: security/mori-domain-security.yml
+- type: MCPServer
+  url: mcp/mori-mcp.yml
+- type: LLMsTxt
+  url: llms/mori-llms.txt
+- type: Authentication
+  url: authentication/mori-authentication.yml
+- type: OAuthScopes
+  url: scopes/mori-scopes.yml
+- type: Conformance
+  url: conformance/mori-conformance.yml
+- type: AgentSkill
+  url: skills/_index.yml
+x-enrichment:
+  date: '2026-07-20'
+  status: enriched
+  artifacts_added: 8
+  pass: local-v1

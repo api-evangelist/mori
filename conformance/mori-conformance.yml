@@ -1,0 +1,29 @@
+generated: '2026-07-20'
+method: searched
+source: >-
+  derived from live probes of /.well-known/openid-configuration,
+  /.well-known/oauth-authorization-server, /.well-known/ucp, and /api/mcp on babymori.com
+note: >-
+  Cross-cutting standards this store's agent/commerce surface conforms to. All
+  surfaces are provided by the Shopify platform, not authored by MORI. No
+  first-party REST OpenAPI is published, so REST-oriented standards are not
+  asserted.
+standards:
+- id: oidc
+  conforms: true
+  evidence: /.well-known/openid-configuration present; RS256 id_token; issuer https://shopify.com/authentication/6726617.
+- id: oauth2
+  conforms: true
+  evidence: authorization_code + refresh_token + jwt-bearer grants; client_secret_basic; oauth-authorization-server metadata (RFC 8414).
+- id: pkce
+  conforms: true
+  evidence: code_challenge_methods_supported includes S256 (RFC 7636).
+- id: mcp
+  conforms: true
+  evidence: Live MCP server at /api/mcp; initialize returns protocolVersion 2025-06-18 (storefront-renderer 0.1.0) with tools/prompts/resources capabilities.
+- id: ucp
+  conforms: true
+  evidence: /.well-known/ucp merchant profile advertises dev.ucp.shopping service (versions 2026-04-08, 2026-01-23) over the /api/ucp/mcp transport.
+- id: rfc9116-security-txt
+  conforms: false
+  evidence: /.well-known/security.txt returns 404.
