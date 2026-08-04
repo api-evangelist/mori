@@ -2,7 +2,8 @@ generated: '2026-07-20'
 method: searched
 source: live probe of https://babymori.com/api/mcp (initialize + tools/list) and /.well-known/ucp
 name: MORI Storefront MCP
-status: live
+status: published
+status_raw: live
 note: >-
   babymori.com is a Shopify-hosted store. Shopify serves a first-party, hosted
   Model Context Protocol (MCP) server for this store at /api/mcp with no
