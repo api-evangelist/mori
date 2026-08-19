@@ -4,13 +4,10 @@ source: live probe of https://babymori.com/api/mcp (initialize + tools/list) and
 name: MORI Storefront MCP
 status: published
 status_raw: live
-note: >-
-  babymori.com is a Shopify-hosted store. Shopify serves a first-party, hosted
-  Model Context Protocol (MCP) server for this store at /api/mcp with no
-  authentication required for browsing/cart tools. A second MCP endpoint,
-  /api/ucp/mcp, implements the Universal Commerce Protocol (UCP) shopping
-  service. MORI does not author these servers; they are provided natively by
-  the Shopify platform for this merchant.
+note: babymori.com is a Shopify-hosted store. Shopify serves a first-party, hosted Model Context Protocol
+  (MCP) server for this store at /api/mcp with no authentication required for browsing/cart tools. A second
+  MCP endpoint, /api/ucp/mcp, implements the Universal Commerce Protocol (UCP) shopping service. MORI
+  does not author these servers; they are provided natively by the Shopify platform for this merchant.
 servers:
 - id: storefront-mcp
   transport: streamable-http
@@ -28,11 +25,13 @@ servers:
   probe_status: 200
   tools:
   - name: search_catalog
-    description: Search store products via natural-language query and/or filter criteria (UCP dev.ucp.shopping.catalog.search); paginated.
+    description: Search store products via natural-language query and/or filter criteria (UCP dev.ucp.shopping.catalog.search);
+      paginated.
   - name: get_cart
     description: Get a cart (items, shipping options, discount info, checkout url) by cart id.
   - name: update_cart
-    description: Add/remove/update line items, buyer identity, delivery addresses, delivery options, discount and gift-card codes, and notes in one call.
+    description: Add/remove/update line items, buyer identity, delivery addresses, delivery options, discount
+      and gift-card codes, and notes in one call.
   - name: search_shop_policies_and_faqs
     description: Answer questions about store policies, products, services, hours, and contact info.
   - name: get_product_details
@@ -47,7 +46,8 @@ servers:
   - '2026-04-08'
   - '2026-01-23'
   probe_status: 422
-  probe_note: tools/list requires a UCP context payload; endpoint present per /.well-known/ucp merchant profile.
+  probe_note: tools/list requires a UCP context payload; endpoint present per /.well-known/ucp merchant
+    profile.
 discovery:
 - path: /.well-known/ucp
   status: 200
@@ -57,3 +57,11 @@ discovery:
   file: ../llms/mori-llms.txt
 - path: /agents.md
   status: 200
+deployment:
+  mode: remote
+  endpoint: https://babymori.com/api/mcp
+  verified: probed
+  probe: live
+  tools: 5
+  checked: '2026-08-12'
+  source: catalog MCP census
